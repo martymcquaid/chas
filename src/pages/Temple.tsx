@@ -22,11 +22,7 @@ export default function Temple() {
     ? products 
     : products.filter(p => p.trial === parseInt(selectedCategory))
 
-  const handleAddToCart = (product: any) => {
-    addCorruptionPoints(50)
-    increaseAcheLevel()
-    alert(`The voices laugh at you. +50 Corruption Points.\n\n${product.name} added to the Altar of Sacrifice.`)
-  }
+
 
   return (
     <div className="min-h-screen bg-black text-red-500">
