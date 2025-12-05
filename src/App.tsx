@@ -5,6 +5,7 @@ import Oath from './pages/Oath'
 import Temple from './pages/Temple'
 import Leaderboard from './pages/Leaderboard'
 import Altar from './pages/Altar'
+import Product from './pages/Product'
 
 // IMPORTANT: For navigation, always use <Link> from react-router-dom, not <a> tags
 // This ensures client-side routing works correctly with the preview URL base path
@@ -17,6 +18,7 @@ function App() {
       <Route path="/confession" element={<Confession />} />
       <Route path="/oath" element={<Oath />} />
       <Route path="/temple" element={<Temple />} />
+      <Route path="/product/:productId" element={<Product />} />
       <Route path="/leaderboard" element={<Leaderboard />} />
       <Route path="/altar" element={<Altar />} />
     </Routes>
