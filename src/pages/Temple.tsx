@@ -148,12 +148,12 @@ export default function Temple() {
                   </ul>
                 </div>
 
-                <button
-                  onClick={() => handleAddToCart(product)}
-                  className="w-full bg-gradient-to-r from-red-700 to-red-900 text-white py-3 rounded-lg hover:from-red-600 hover:to-red-800 transform hover:scale-105 transition-all duration-300"
+                <Link
+                  to={`/product/${product.id}`}
+                  className="block w-full bg-gradient-to-r from-red-700 to-red-900 text-white py-3 rounded-lg hover:from-red-600 hover:to-red-800 transform hover:scale-105 transition-all duration-300 text-center"
                 >
-                  Add to Altar
-                </button>
+                  View Trial Details
+                </Link>
               </div>
             </div>
           ))}
