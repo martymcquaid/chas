@@ -24,7 +24,7 @@ export function useUser() {
   const createUser = (userData: Omit<User, 'id' | 'joinedAt'>) => {
     const newUser: User = {
       ...userData,
-      id: Math.random().toString(36).substr(2, 9),
+      id: Math.random().toString(36).substring(2, 11),
       joinedAt: new Date()
     }
     setUser(newUser)
