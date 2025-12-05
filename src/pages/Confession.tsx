@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { quizQuestions } from '../utils/data'
-import { useUser } from '../hooks/useUser'
 
 export default function Confession() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
