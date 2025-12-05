@@ -6,7 +6,6 @@ export default function Confession() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [corruptionPoints, setCorruptionPoints] = useState(0)
   const [answers, setAnswers] = useState<string[]>([])
-  const { createUser } = useUser()
 
   const handleAnswer = (points: number, answerText: string) => {
     const newPoints = corruptionPoints + points
