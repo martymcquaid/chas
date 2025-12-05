@@ -2,7 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  background-color: #000;
+  color: #ef4444;
+}
+
+@layer utilities {
+  .text-shadow-red {
+    text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+  }
+  
+  .glow-red {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+  
+  .bg-gradient-radial {
+    background: radial-gradient(circle, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7f1d1d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #991b1b;
+}
+
+/* Selection styling */
+::selection {
+  background-color: #7f1d1d;
+  color: #fff;
 }
