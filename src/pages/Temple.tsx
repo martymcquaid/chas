@@ -4,7 +4,7 @@ import { useUser } from '../hooks/useUser'
 import { products, leaderboardData } from '../utils/data'
 
 export default function Temple() {
-  const { user, addCorruptionPoints, increaseAcheLevel } = useUser()
+  const { user } = useUser()
   const [selectedCategory, setSelectedCategory] = useState('all')
 
   if (!user) {
