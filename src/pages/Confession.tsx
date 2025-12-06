@@ -18,6 +18,11 @@ export default function Confession() {
       setTimeout(() => {
         setCurrentQuestion(currentQuestion + 1)
       }, 500)
+    } else {
+      // This is the last question, move to results
+      setTimeout(() => {
+        setCurrentQuestion(currentQuestion + 1)
+      }, 500)
     }
   }
 
@@ -65,45 +70,78 @@ export default function Confession() {
   const question = quizQuestions[currentQuestion]
 
   return (
-    <div className="min-h-screen bg-black text-red-500 flex items-center justify-center px-4">
-      <div className="max-w-3xl w-full">
-        {/* Progress indicator */}
-        <div className="mb-12">
-          <div className="flex justify-between text-sm mb-4">
-            <span>Question {currentQuestion + 1} of {quizQuestions.length}</span>
-            <span>Corruption Points: {corruptionPoints}</span>
-          </div>
-          <div className="w-full bg-red-950 rounded-full h-2">
-            <div 
-              className="bg-gradient-to-r from-red-600 to-red-800 h-2 rounded-full transition-all duration-500"
-              style={{ width: `${((currentQuestion + 1) / quizQuestions.length) * 100}%` }}
-            ></div>
-          </div>
-        </div>
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-purple-900 to-black text-red-500 flex items-center justify-center px-4 relative overflow-hidden">
+      {/* Atmospheric background effects */}
+      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-red-900/20 via-transparent to-purple-900/20"></div>
+      
+      {/* Floating particles */}
+      <div className="absolute inset-0">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-red-400 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${3 + Math.random() * 4}s`
+            }}
+          ></div>
+        ))}
+      </div>
 
-        {/* Question */}
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center animate-pulse">
-          {question.question}
-        </h2>
+      <div className="max-w-3xl w-full relative z-10">
+        {/* Gothic frame */}
+        <div className="relative bg-gradient-to-b from-gray-900 to-black p-8 rounded-t-[2rem] border-4 border-red-900 shadow-2xl">
+          {/* Decorative arch top */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="w-24 h-12 bg-gradient-to-b from-gray-800 to-black rounded-b-full shadow-lg border-2 border-red-900"></div>
+          </div>
+          
+          {/* Progress indicator */}
+          <div className="mb-12">
+            <div className="flex justify-between text-sm mb-4 text-red-400">
+              <span className="font-semibold">Question {currentQuestion + 1} of {quizQuestions.length}</span>
+              <span className="font-semibold">Corruption Points: {corruptionPoints}</span>
+            </div>
+            <div className="w-full bg-red-950 rounded-full h-3 border border-red-900">
+              <div 
+                className="bg-gradient-to-r from-red-600 to-red-800 h-3 rounded-full transition-all duration-500 shadow-lg shadow-red-600/50"
+                style={{ width: `${((currentQuestion + 1) / quizQuestions.length) * 100}%` }}
+              ></div>
+            </div>
+          </div>
 
-        {/* Answers */}
-        <div className="space-y-4">
-          {question.answers.map((answer, index) => (
-            <button
-              key={index}
-              onClick={() => handleAnswer(answer.corruptionPoints, answer.text)}
-              className="w-full text-left p-6 bg-red-950/30 border border-red-900 rounded-lg hover:bg-red-900/40 hover:border-red-700 transform hover:scale-102 transition-all duration-300 group"
-            >
-              <div className="flex justify-between items-center">
-                <span className="text-lg group-hover:text-red-400 transition-colors">
-                  {answer.text}
-                </span>
-                <span className="text-sm text-red-700 group-hover:text-red-600">
-                  +{answer.corruptionPoints} corruption
-                </span>
-              </div>
-            </button>
-          ))}
+          {/* Question with gothic styling */}
+          <div className="text-center mb-12">
+            <div className="text-6xl mb-4 animate-pulse">✞</div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-red-400 leading-relaxed">
+              {question.question}
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent mx-auto"></div>
+          </div>
+
+          {/* Answers */}
+          <div className="space-y-4">
+            {question.answers.map((answer, index) => (
+              <button
+                key={index}
+                onClick={() => handleAnswer(answer.corruptionPoints, answer.text)}
+                className="w-full text-left p-6 bg-gradient-to-r from-red-950/40 to-black/40 border border-red-900/50 rounded-lg hover:from-red-900/60 hover:to-red-950/60 hover:border-red-700 transform hover:scale-[1.02] transition-all duration-300 group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                <div className="relative flex justify-between items-center">
+                  <span className="text-lg group-hover:text-red-300 transition-colors font-medium">
+                    {answer.text}
+                  </span>
+                  <span className="text-sm text-red-700 group-hover:text-red-500 font-bold">
+                    +{answer.corruptionPoints} corruption
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>

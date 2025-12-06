@@ -4,6 +4,11 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import './index.css'
 
+// Fix for notifyRouteChange error (likely from browser extensions)
+if (typeof window !== 'undefined' && !(window as any).notifyRouteChange) {
+  (window as any).notifyRouteChange = () => {}
+}
+
 // Chipify-safe base path resolution:
 // - Uses a shared global to avoid duplicate identifier errors if the bundle executes twice.
 // - Uses `var` so redeclaration is harmless.
