@@ -38,30 +38,59 @@ export default function Confession() {
     const result = getCorruptionLevel()
     
     return (
-      <div className="min-h-screen bg-black text-red-500 flex items-center justify-center px-4">
-        <div className="max-w-2xl text-center">
-          <h1 className="text-5xl font-bold mb-8 animate-pulse">Your Corruption Level</h1>
-          <div className="text-8xl font-black text-red-600 mb-6">{result.level}%</div>
-          <p className="text-xl mb-12">{result.text}</p>
-          
-          <div className="mb-8">
-            <div className="w-full bg-red-950 rounded-full h-4 mb-4">
-              <div 
-                className="bg-gradient-to-r from-red-600 to-red-800 h-4 rounded-full transition-all duration-1000"
-                style={{ width: `${result.level}%` }}
-              ></div>
-            </div>
-          </div>
+      <div className="min-h-screen bg-gradient-to-b from-slate-900 via-purple-900 to-black text-red-500 flex items-center justify-center px-4 relative overflow-hidden">
+        {/* Atmospheric background effects */}
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-red-900/20 via-transparent to-purple-900/20"></div>
+        
+        {/* Floating particles */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-red-400 rounded-full animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 4}s`
+              }}
+            ></div>
+          ))}
+        </div>
 
-          <Link
-            to="/oath"
-            className="inline-block group"
-          >
-            <div className="absolute inset-0 bg-red-600 blur-lg group-hover:blur-xl transition-all duration-300 opacity-50"></div>
-            <button className="relative bg-gradient-to-r from-red-700 to-red-900 text-white px-8 py-4 text-lg font-bold rounded-lg border border-red-800 hover:from-red-600 hover:to-red-800 transform hover:scale-105 transition-all duration-300">
-              Continue to Your Oath
-            </button>
-          </Link>
+        <div className="max-w-2xl text-center relative z-10">
+          {/* Gothic frame */}
+          <div className="relative bg-gradient-to-b from-gray-900 to-black p-12 rounded-t-[3rem] border-4 border-red-900 shadow-2xl">
+            {/* Decorative arch top */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="w-32 h-16 bg-gradient-to-b from-gray-800 to-black rounded-b-full shadow-lg border-2 border-red-900"></div>
+            </div>
+            
+            <div className="text-6xl mb-6 animate-pulse">✞</div>
+            <h1 className="text-5xl font-bold mb-8 text-red-400 animate-pulse">Your Corruption Level</h1>
+            <div className="text-8xl font-black text-red-600 mb-6 shadow-2xl shadow-red-600/50">{result.level}%</div>
+            <p className="text-xl mb-12 text-red-300">{result.text}</p>
+            
+            <div className="mb-8">
+              <div className="w-full bg-red-950 rounded-full h-6 mb-4 border-2 border-red-900">
+                <div 
+                  className="bg-gradient-to-r from-red-600 to-red-800 h-6 rounded-full transition-all duration-1000 shadow-lg shadow-red-600/50"
+                  style={{ width: `${result.level}%` }}
+                ></div>
+              </div>
+            </div>
+
+            <Link
+              to="/oath"
+              className="inline-block group"
+            >
+              <div className="absolute inset-0 bg-red-600 blur-lg group-hover:blur-xl transition-all duration-300 opacity-50"></div>
+              <button className="relative bg-gradient-to-r from-red-700 to-red-900 text-white px-8 py-4 text-lg font-bold rounded-lg border border-red-800 hover:from-red-600 hover:to-red-800 transform hover:scale-105 transition-all duration-300">
+                Continue to Your Oath
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     )
